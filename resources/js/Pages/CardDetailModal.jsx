@@ -37,78 +37,77 @@ const CardDetailModal = () => {
                                     new
                                 </h5>
 
-                                <div className="mb-3 d-flex flex-wrap gap-2">
-                                    <button className="btn btn-outline-light btn-sm">+ Add</button>
-                                    <button className="btn btn-outline-light btn-sm"><i
-                                        className="fa-solid fa-list-check me-1"></i> Checklist
-                                    </button>
-                                    <button className="btn btn-outline-light btn-sm"><i
-                                        className="fa-regular fa-paperclip me-1"></i> Attachment
-                                    </button>
-                                </div>
-
-                                <div className="d-flex flex-wrap gap-4 align-items-center mb-4">
-                                    <div>
-                                        <small className="text-muted">Members</small>
-                                        <div className="d-flex align-items-center gap-1 mt-1">
-                                            <span className="member-badge">AB</span>
-                                            <span className="member-badge">AA</span>
-                                            <span className="member-badge">M</span>
-                                            <button className="btn btn-sm btn-outline-secondary py-0 px-2">+</button>
+                                <div className="d-flex ">
+                                    <div className="member_sec">
+                                        <h5 className="">Members</h5>
+                                        <div className="d-flex align-items-center gap-1">
+                                            <span className="member-badge">A</span>
+                                            <span className="member-badge">B</span>
+                                            <span className="member-badge">C</span>
+                                            <span className="add_member"><i className="fa-solid fa-plus"></i></span>
                                         </div>
                                     </div>
-                                    <div>
-                                        <small className="text-muted">Labels</small>
-                                        <div className="mt-1 d-flex gap-1 align-items-center">
-                                            <span className="badge bg-danger">High</span>
-                                            <button className="btn btn-sm btn-outline-secondary py-0 px-2">+</button>
+                                    <div className="label_sec">
+                                        <h5 className="">Labels</h5>
+                                        <div className="d-flex">
+                                            <span className="label_btn">High</span>
+                                            <span className="add_label"><i className="fa-solid fa-plus"></i></span>
                                         </div>
                                     </div>
-                                    <div>
-                                        <small className="text-muted">Due date</small>
-                                        <div className="d-flex align-items-center gap-2 mt-1">
-                                            <button className="btn btn-sm btn-outline-light">
+                                    <div className="date_sec">
+                                        <h5 className="">Due date</h5>
+                                        <div className="d-flex">
+                                            <span className="">
                                                 <i className="fa-solid fa-clock me-1"></i> Jul 4, 12:21 PM
-                                            </button>
-                                            <span className="badge bg-warning text-dark">Due soon</span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="mb-4">
-                                    <h6><i className="fa-solid fa-align-left me-2"></i> Description</h6>
-                                    <p className="text-muted">lorem ipsum</p>
-                                    <button className="btn btn-sm btn-outline-light">Edit</button>
+                                <div className="d-flex desc_flex">
+                                    <div className="desc_sec ">
+                                        <h5 className=""><i className="fa-solid fa-align-left me-3"></i> Description
+                                        </h5>
+                                    </div>
+                                    <span className="desc_edit_btn">Edit</span>
+                                </div>
+                                <div className="view_desc">
+                                    <p>It is a long established fact that a reader will be distracted by the readable
+                                        content of a page when looking at its layout. The point of using.</p>
+                                </div>
+
+                                <div className="d-flex attch_flex">
+                                    <div className="desc_sec ">
+                                        <h5 className=""><i className="fa-solid fa-align-left me-3"></i> Description
+                                        </h5>
+                                    </div>
+                                    <span className="desc_edit_btn">Edit</span>
                                 </div>
                             </div>
+                            <div className="col-md-1"></div>
 
-                            <div className="col-md-4">
-                                <div className="d-flex justify-content-between align-items-center mb-2">
-                                    <h6 className="mb-0">Comments and activity</h6>
-                                    <button className="btn btn-sm btn-outline-secondary">Hide details</button>
-                                </div>
+                            <div className="col-md-3">
+                                <div className="card_detail_right_side">
+                                    <ul className="btn_sec">
+                                        <li className="detail_btn_sec"><i className="fa-solid fa-user-plus"></i>
+                                            <span>Join</span></li>
+                                        <li className="detail_btn_sec"><i className="fa-solid fa-user"></i>
+                                            <span>Members</span></li>
 
-                                <textarea className="form-control bg-dark text-white border-secondary mb-2" rows="2"
-                                          placeholder="Write a comment..."></textarea>
-                                <button className="btn btn-primary btn-sm mb-4">Comment</button>
+                                        <li className="detail_btn_sec"><i className="fa-solid fa-tag"></i>
+                                            <span>Labels</span></li>
 
-                                <div className="activity-feed">
-                                    <div className="d-flex mb-3">
-                                        <span className="member-badge me-2">H</span>
-                                        <div>
-                                            <small><strong>hussain.khan</strong> added <strong>Moiz</strong> to this
-                                                card</small>
-                                            <div className="text-muted small">7 hours ago</div>
-                                        </div>
-                                    </div>
-                                    <div className="d-flex mb-3">
-                                        <span className="member-badge me-2">H</span>
-                                        <div>
-                                            <small><strong>hussain.khan</strong> set this card due at <strong>12:21
-                                                PM</strong></small>
-                                            <div className="text-muted small">7 hours ago</div>
-                                        </div>
-                                    </div>
+                                        <li className="detail_btn_sec"><i className="fa-solid fa-clock"></i>
+                                            <span>Date</span></li>
+
+                                        <li className="detail_btn_sec"><i className="fa-solid fa-paperclip"></i>
+                                            <span>Attachments</span></li>
+
+                                        <li className="detail_btn_sec"><i className="fa-solid fa-user-plus"></i>
+                                            <span>Join</span></li>
+
+                                    </ul>
+
                                 </div>
                             </div>
                         </div>
