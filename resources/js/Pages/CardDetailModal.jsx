@@ -1,6 +1,49 @@
 import React from 'react'
+import { useState,useRef } from 'react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+const CardDetailModal = ({ description }) => {
+    // Attachment Select Code
+    const fileInputRef = useRef(null);
+    const handleFileClick = () => {
+        fileInputRef.current.click();
+    };
 
-const CardDetailModal = () => {
+    // editing dec ckeditor open or close
+    const [isEditing, setIsEditing] = useState(false);
+    const [desc, setDesc] = useState(description || '');
+    const [tempDesc, setTempDesc] = useState(description || '');
+
+    const handleSave = () => {
+        setDesc(tempDesc);
+        setIsEditing(false);
+    };
+
+    const handleCancel = () => {
+        setTempDesc(desc);
+        setIsEditing(false);
+    };
+
+    //Comment js
+    const [isCommentEditing, setIsCommentEditing] = useState(false);
+    const [tempComment, setTempComment] = useState('');
+    const [comments, setComments] = useState([]); // 👈 Array to hold all comments
+
+
+    const handleCommentSave = () => {
+        if (tempComment.trim() !== '') {
+            setComments(prev => [...prev, tempComment]); // add new comment to list
+            setTempComment('');
+            setIsCommentEditing(false);
+        }
+    };
+
+
+    const handleCommentCancel = () => {
+        setTempComment('');
+        setIsCommentEditing(false);
+    };
+
     return (
         <>
             <div className="modal fade" id="cardDetailModal" tabIndex="-1" aria-hidden="true">
@@ -23,70 +66,201 @@ const CardDetailModal = () => {
                                     <i className="fa-solid fa-ellipsis"></i>
                                     <i className="fa-solid fa-xmark" data-bs-dismiss="modal"></i>
                                 </div>
-
-
                             </div>
 
                         </div>
 
                         <div className="modal-body row">
 
-                            <div className="col-md-8 card_left_box">
-                                <h5 className="d-flex card_title">
-                                    <i className="fa-regular fa-circle"></i>
-                                    new
-                                </h5>
+                            <div className="col-md-8  left_scroll_container">
+                                <div className="card_left_box">
+                                    <h5 className="d-flex card_title">
+                                        <i className="fa-regular fa-circle"></i>
+                                        new
+                                    </h5>
 
-                                <div className="d-flex ">
-                                    <div className="member_sec">
-                                        <h5 className="">Members</h5>
-                                        <div className="d-flex align-items-center gap-1">
-                                            <span className="member-badge">A</span>
-                                            <span className="member-badge">B</span>
-                                            <span className="member-badge">C</span>
-                                            <span className="add_member"><i className="fa-solid fa-plus"></i></span>
+                                    <div className="d-flex ">
+                                        <div className="member_sec">
+                                            <h5 className="">Members</h5>
+                                            <div className="d-flex align-items-center gap-1">
+                                                <span className="member-badge">A</span>
+                                                <span className="member-badge">B</span>
+                                                <span className="member-badge">C</span>
+                                                <span className="add_member"><i className="fa-solid fa-plus"></i></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="label_sec">
-                                        <h5 className="">Labels</h5>
-                                        <div className="d-flex">
-                                            <span className="label_btn">High</span>
-                                            <span className="add_label"><i className="fa-solid fa-plus"></i></span>
+                                        <div className="label_sec">
+                                            <h5 className="">Labels</h5>
+                                            <div className="d-flex">
+                                                <span className="label_btn">High</span>
+                                                <span className="add_label"><i className="fa-solid fa-plus"></i></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="date_sec">
-                                        <h5 className="">Due date</h5>
-                                        <div className="d-flex">
+                                        <div className="date_sec">
+                                            <h5 className="">Due date</h5>
+                                            <div className="d-flex">
                                             <span className="">
                                                 <i className="fa-solid fa-clock me-1"></i> Jul 4, 12:21 PM
                                             </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className="d-flex desc_flex">
-                                    <div className="desc_sec ">
-                                        <h5 className=""><i className="fa-solid fa-align-left me-3"></i> Description
-                                        </h5>
+                                    <div className="d-flex desc_flex">
+                                        <div className="desc_sec">
+                                            <h5><i className="fa-solid fa-align-left me-3"></i> Description</h5>
+                                        </div>
+                                        {!isEditing && (
+                                            <span className="desc_edit_btn"
+                                                  onClick={() => setIsEditing(true)}>Edit</span>
+                                        )}
                                     </div>
-                                    <span className="desc_edit_btn">Edit</span>
-                                </div>
-                                <div className="view_desc">
-                                    <p>It is a long established fact that a reader will be distracted by the readable
-                                        content of a page when looking at its layout. The point of using.</p>
-                                </div>
+                                    <div className="view_desc mt-3">
+                                        {isEditing ? (
+                                            <div>
+                                                <div className="custom-editor">
+                                                    <CKEditor
+                                                        editor={ClassicEditor}
+                                                        data={tempDesc}
+                                                        onChange={(event, editor) => {
+                                                            const data = editor.getData();
+                                                            setTempDesc(data);
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="desc_ck_btn mt-2">
+                                                    <button className="btn btn-success me-2" onClick={handleSave}>Save
+                                                    </button>
+                                                    <button className="btn btn-secondary" onClick={handleCancel}>Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div dangerouslySetInnerHTML={{__html: desc}}/>
+                                        )}
+                                    </div>
+                                    {/*<div className="view_desc">*/}
+                                    {/*    <p>It is a long established fact that a reader will be distracted by the readable*/}
+                                    {/*        content of a page when looking at its layout. The point of using.</p>*/}
+                                    {/*</div>*/}
 
-                                <div className="d-flex attch_flex">
-                                    <div className="desc_sec ">
-                                        <h5 className=""><i className="fa-solid fa-align-left me-3"></i> Description
-                                        </h5>
+                                    <div className="d-flex attch_flex">
+                                        <div className="desc_sec ">
+                                            <h5 className=""><i className="fa-solid fa-paperclip me-3"></i> Attachment
+                                            </h5>
+                                        </div>
+                                        <span className="attch_add_btn" onClick={handleFileClick}>Add</span>
+                                        <input
+                                            type="file"
+                                            ref={fileInputRef}
+                                            style={{display: 'none'}}
+                                        />
                                     </div>
-                                    <span className="desc_edit_btn">Edit</span>
+
+                                    <div className="view_attach">
+                                        <h6>Files</h6>
+                                        <div className="attach_files d-flex">
+                                            <div className="d-flex">
+                                                <div className="attach_img">
+                                                    <img src="/images/card_img.webp" alt=""/>
+                                                </div>
+                                                <div className="attach_det">
+                                                    <h6>curved5-samll.jpg</h6>
+                                                    <p>Added Dec 11, 2025, 9:25 PM</p>
+                                                </div>
+                                            </div>
+                                            <div className="attach_opt">
+                                                <i className="fa-solid fa-ellipsis"></i>
+                                            </div>
+                                        </div>
+                                        <div className="attach_files d-flex">
+                                            <div className="d-flex">
+                                                <div className="attach_img">
+                                                    <img src="/images/card_img.webp" alt=""/>
+                                                </div>
+                                                <div className="attach_det">
+                                                    <h6>curved5-samll.jpg</h6>
+                                                    <p>Added Dec 11, 2025, 9:25 PM</p>
+                                                </div>
+                                            </div>
+                                            <div className="attach_opt">
+                                                <i className="fa-solid fa-ellipsis"></i>
+                                            </div>
+                                        </div>
+
+
+                                        <span
+                                            className="all_attach_btn mt-4 d-block">View all attachments 7 (hidden)</span>
+                                    </div>
+
+                                    <div className="comment_sec">
+                                        <div className="comment_head_sec d-flex">
+                                            <img src="/images/chat.png" alt=""/>
+                                            <span>Comments and Activity</span>
+                                        </div>
+
+                                        <div className="user_comment">
+                                            <div>
+                                                {isCommentEditing ? (
+                                                    <div>
+                                                        <div className="custom-editor">
+                                                            <CKEditor
+                                                                editor={ClassicEditor}
+                                                                data={tempComment}
+                                                                onChange={(event, editor) => {
+                                                                    const data = editor.getData();
+                                                                    setTempComment(data);
+                                                                }}
+                                                            />
+                                                        </div>
+                                                        <div className="desc_ck_btn mt-2">
+                                                            <button className="btn btn-success me-2" onClick={handleCommentSave}>Save</button>
+                                                            <button className="btn btn-secondary" onClick={handleCommentCancel}>Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div onClick={() => setIsCommentEditing(true)}>
+                                                        <input className="comment_click" type="text" placeholder="write a comment..." />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {/* Printed Comments Below */}
+                                        {comments.length > 0 && (
+                                            <div className="printed_comments">
+                                                {comments.map((cmt, index) => (
+                                                    <div key={index}
+                                                         className="single_comment d-flex align-items-center">
+                                                        <div className="comment_avatar">
+                                                            <span>H</span>
+                                                        </div>
+                                                        <div className="comment_wrapper">
+                                                            <div
+                                                                className="comment_box"
+                                                                dangerouslySetInnerHTML={{__html: cmt}}
+                                                            />
+                                                            <div className="comment_actions d-flex gap-1">
+                                                                <button className="edit_btn">Edit
+                                                                </button>
+                                                                <button
+                                                                    className="delete_btn">Delete
+                                                                </button>
+                                                                <button className="reaction_btn">😊
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                        )}
+
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col-md-1"></div>
 
-                            <div className="col-md-3">
+                            <div className="col-md-4">
                                 <div className="card_detail_right_side">
                                     <ul className="btn_sec">
                                         <li className="detail_btn_sec"><i className="fa-solid fa-user-plus"></i>
