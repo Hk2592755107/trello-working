@@ -256,7 +256,7 @@ body {
     background-color: #1c1c1c;
     border-radius: 12px;
     color: #ccc;
-    width: 300px;
+    width: 260px;
     flex-shrink: 0;
     padding: 12px;
     margin: 0 15px;
@@ -334,7 +334,7 @@ body {
     cursor: pointer;
 }
 .board-card:hover {
-    border: 1px solid #fff;
+    border: 2px solid #fff;
 
 }
 
@@ -362,6 +362,7 @@ body {
 
 .column-header .column-title {
     color: #aaa;
+    font-size: 14px;
     padding: 0px 10px;
 }
 
@@ -370,13 +371,13 @@ body {
 }
 
 .add-icon {
-    font-size: 18px;
+    font-size: 14px;
     color: #aaa;
 }
 
 .add-card .add-title {
-    font-size: 17px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
     padding: 0px 5px;
 }
 
@@ -393,6 +394,7 @@ body {
     padding: 8px;
     background-color: #3c3c3c;
     border: 1px solid #444;
+    height: 45px;
     border-radius: 4px;
     color: #ddd;
     resize: none;
@@ -415,8 +417,9 @@ body {
     background-color: #579dff;
     color: #000;
     border: none;
+    font-size: 14px;
     border-radius: 4px;
-    padding: 6px 12px;
+    padding: 4px 8px;
     cursor: pointer;
     transition: background 0.2s;
 }
@@ -431,8 +434,8 @@ body {
     border: none;
     color: #aaa;
     cursor: pointer;
-    font-size: 18px;
-    padding: 7px 10px;
+    font-size: 16px;
+    padding: 5px 7px;
     transition: color 0.2s;
 }
 
@@ -449,15 +452,14 @@ body {
 }
 
 .board-card .board-content-box .priority_sec {
-
-    border-radius: 10px;
+    border-radius: 5px;
     width: 50px;
-    height: 10px;
+    height: 8px;
     background-color: red;
 }
 .board-card .board-content-box .board-card-title h3 {
-    padding:10px 0px ;
-    font-size: 16px;
+    padding:8px 0px ;
+    font-size: 14px;
     color: #aaa;
 }
 .board-card .board-content-box .board-card-detail {
@@ -473,26 +475,27 @@ body {
 .board-card .board-content-box .board-card-detail .board-card-btn {
     background-color: #f5cd47;
     color: #000;
-    padding: 5px 5px;
+    padding: 3px 3px;
     margin: auto 5px;
-    font-size: 12px;
-    border-radius: 5px;
+    font-size: 11px;
+    border-radius: 4px;
 }
 .board-card .board-content-box .board-card-detail .fa-barcode {
     transform: rotate(271deg);
 }
 .board-card .board-content-box .board-card-detail i {
     padding: 0px 3px;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
 }
 
 .board-card .board-content-box .board-card-detail .board-card-user span {
     background-color: #172b4d;
-    padding: 7px 10px;
+    padding: 5px 7px;
     margin: auto 2px;
     border-radius: 20px;
     cursor: pointer;
+    font-size: 12px;
 }
 
 /*Card Detail Modal CSS*/
@@ -507,7 +510,7 @@ body {
 
 }
 .modal-content {
-    height: 85vh;
+    height: 80vh;
     overflow: hidden;
 
 }
@@ -531,10 +534,11 @@ body {
 
 }
 .card-cover .board_badge {
-    height: 28px;
-    padding: 7px 14px;
-    margin: 9px 10px;
+    height: 26px;
+    padding: 7px 9px;
+    margin: 12px 10px;
     border-radius: 5px;
+    font-size: 11px;
 }
 .card-cover img {
     max-width: 300px;
@@ -547,17 +551,20 @@ body {
     justify-content: end;
 }
 .card-cover .icon-group i {
-    padding: 11px 11px;
+    padding: 9px 9px;
     background-color: #3c3e42;
     border-radius: 22px;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .card_left_box .card_title {
-    padding: 10px 10px;
-    gap: 13px;
-    font-size: 23px;
+    padding: 0px 0px;
+    gap: 12px;
+    font-size: 20px;
     align-items: center;
+}
+.card_left_box .card_title i {
+    font-size: 15px;
 }
 
 .card_detail_right_side {
@@ -565,7 +572,7 @@ body {
 }
 .card_detail_right_side .btn_sec {
     text-align: right;
-    padding: 0px 0px 0px 50px;
+    padding: 0px 0px 0px 10px;
 }
 .card_detail_right_side .btn_sec .detail_btn_sec {
     margin: 15px 5px;
@@ -586,7 +593,7 @@ body {
 }
 .card_left_box .member_sec {
     padding: 10px 5px;
-    margin: 10px 42px;
+    margin: 10px 25px;
 }
 .card_left_box .member_sec h5 {
     padding: 0px 0px;
@@ -604,7 +611,7 @@ body {
 
 .card_left_box .label_sec {
     padding: 10px 5px;
-    margin: 10px 42px;
+    margin: 10px 25px;
 }
 .card_left_box .label_sec h5 {
     padding: 0px 0px;
@@ -652,37 +659,42 @@ background-color: #d10101;
 .card_left_box .desc_flex {
     justify-content: space-between;
 }
-.card_left_box .desc_sec {
-    padding: 10px 10px;
-    margin: 20px 0px;
-   justify-content: space-between;
-}
+
 .card_left_box .desc_sec h5 {
     font-size: 16px;
 }
-.card_left_box .desc_flex .desc_edit_btn {
-    padding: 7px 19px;
-    height: 35px;
+/*.card_left_box .desc_flex .desc_edit_btn {*/
+/*    padding: 7px 19px;*/
+/*    height: 35px;*/
+/*    font-size: 14px;*/
+/*    margin: 0px 50px 0px 0px;*/
+/*    cursor: pointer;*/
+/*    border-radius: 3px;*/
+/*    background-color: #3c3e42;*/
+/*}*/
+
+.card_left_box .view_desc {
+    margin: 5px 30px 0px 30px;
     font-size: 14px;
-    margin: 0px 50px 0px 0px;
-    cursor: pointer;
-    border-radius: 3px;
-    background-color: #3c3e42;
 }
 
-.card_left_box .view_desc p {
+.card_left_box .view_desc .comment_box {
     white-space: normal;
     word-break: break-word;
-    margin: 5px 0px 0px 43px;
-    font-size: 14px;
-}
+    margin: 0px 10px 0px 0px;
+    max-width: 600px;
+    font-size: 15px;
+    padding: 10px 10px 0px 10px;
+    border-radius: 5px;
+    background-color: #212529;
 
+}
 
 .card_left_box .desc_flex {
     justify-content: space-between;
 }
 .card_left_box .desc_sec {
-    padding: 10px 10px;
+    padding: 10px 0px;
     margin: 20px 0px;
     justify-content: space-between;
 }
@@ -690,10 +702,10 @@ background-color: #d10101;
     font-size: 16px;
 }
 .card_left_box .desc_flex .desc_edit_btn {
-    padding: 7px 19px;
-    height: 35px;
+    padding: 6px 17px;
+    height: 30px;
     font-size: 14px;
-    margin: auto 50px auto 0px;
+    margin: auto 30px auto 0px;
     cursor: pointer;
     border-radius: 3px;
     background-color: #3c3e42;
@@ -702,19 +714,15 @@ background-color: #d10101;
 .card_left_box .attch_flex {
     justify-content: space-between;
 }
-.card_left_box .desc_sec {
-    padding: 10px 10px;
-    margin: 20px 0px;
-    justify-content: space-between;
-}
+
 .card_left_box .desc_sec h5 {
     font-size: 16px;
 }
 .card_left_box .attch_flex .attch_add_btn {
-    padding: 7px 19px;
-    height: 35px;
+    padding: 6px 17px;
+    height: 30px;
     font-size: 14px;
-    margin: auto 50px auto 0px;
+    margin: auto 30px auto 0px;
     cursor: pointer;
     border-radius: 3px;
     background-color: #3c3e42;
@@ -743,10 +751,33 @@ background-color: #d10101;
 
 /* Set dark background and white text/icons */
 .desc_ck_btn {
-    margin: 0px 50px;
+    font-size: 12px;
+    margin: 0px 0px;
+}
+.desc_ck_btn button {
+    font-size: 12px;
+    padding: 5px 5px;
+}
+.desc_ck_btn .sav_btn {
+    background-color: #579dff;
+    color: #1d2125;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 5px;
+
+}
+.desc_ck_btn .cancel_btn {
+    color: #fff;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 5px;
+
+}
+.desc_ck_btn .cancel_btn:hover {
+    background-color: #6b7280;
 }
 .card_left_box .view_desc .custom-editor {
-    margin: 0px 50px;
+    margin: 0px 0px;
 }
 .ck.ck-editor__main > .ck-editor__editable {
     background-color: #212529 !important;
@@ -782,7 +813,7 @@ background-color: #d10101;
 /*Attachment Css*/
 
 .card_left_box .view_attach {
-    margin: 0px 50px;
+    margin: 0px 30px;
 
 }
 .card_left_box .view_attach .attach_files {
@@ -851,40 +882,97 @@ background-color: #d10101;
 /*    border-radius: 50px;*/
 /*}*/
 .card_left_box .comment_sec .user_comment .comment_click {
-    width: 600px;
+    width: 550px;
     height: 50px;
     margin: 0px 50px;
     background-color: #2c3339;
     border-radius: 5px;
 }
 
-.card_left_box .comment_sec.printed_comments {
+.comment_sec .user_comment .desc_ck_btn {
+    font-size: 12px;
+    margin: 0px 50px;
+}
+.comment_sec .user_comment .desc_ck_btn button {
+    font-size: 12px;
+    padding: 5px 5px;
+}
+.comment_sec .user_comment .desc_ck_btn .sav_btn {
+    background-color: #579dff;
+    color: #1d2125;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 5px;
 
+}
+.comment_sec .user_comment .desc_ck_btn .cancel_btn {
+    color: #fff;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 5px;
+
+}
+.comment_sec .user_comment .desc_ck_btn .cancel_btn:hover {
+    background-color: #6b7280;
 }
 .card_left_box .comment_sec .printed_comments .single_comment {
     gap: 15px;
 }
 .card_left_box .comment_sec .printed_comments .single_comment .comment_avatar span {
-
     background-color: #172b4d;
-    padding: 10px 14px;
+    padding: 5px 11px;
     border-radius: 50px;
 
+}
+.card_left_box .comment_sec .printed_comments .comment_avatar {
+    gap: 12px;
+}
+.card_left_box .comment_sec .printed_comments .comment_avatar .usr_name_sec {
+    align-items: center;
+    margin: auto 0px;
+    gap: 14px;
+    display: flex;
+}
+.card_left_box .comment_sec .printed_comments .comment_avatar .usr_name_sec p {
+    font-size: 13px;
+    color: #579dff;
+    padding: 0px 0px;
+    border-bottom: 1px solid #579dff;
+    margin: 0px 0px 6px 0px;
 }
 .card_left_box .comment_sec .printed_comments .single_comment .comment_box {
     white-space: normal;
     word-break: break-word;
-    margin: 0px 10px 0px 0px;
-    max-width: 600px;
-    font-size: 15px;
+    margin: 0px 10px 10px 40px;
+    width: 570px;
+    font-size: 14px;
     padding: 10px 10px 0px 10px;
     border-radius: 5px;
     background-color: #2c3339;
 }
 .card_left_box .comment_sec .printed_comments .single_comment .comment_box p {
-    margin: ;
+    margin: 0px 0px!important;
 }
 .card_left_box .comment_sec .printed_comments .single_comment .comment_wrapper .comment_actions button {
-    padding: 0px 4px;
+    padding: 3px 3px;
     font-size: 12px;
+}
+.card_left_box .comment_sec .printed_comments .single_comment .comment_wrapper .comment_actions .edit_btn {
+    color: #fff;
+}
+.card_left_box .comment_sec .printed_comments .single_comment .comment_wrapper .comment_actions .reaction_btn i {
+    color: #fff;
+}
+.card_left_box .comment_sec .printed_comments .single_comment .comment_wrapper .comment_actions .delete_btn {
+    color: #fff;
+}
+.selected-emoji {
+    font-size: 1.2rem;
+    margin-right: 4px;
+}
+
+/*Modal Styling*/
+
+.modal-xl {
+    width: 1020px !important;
 }

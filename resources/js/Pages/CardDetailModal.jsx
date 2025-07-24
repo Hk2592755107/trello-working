@@ -2,6 +2,8 @@ import React from 'react'
 import { useState,useRef } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import EmojiPicker from 'emoji-picker-react';
+
 const CardDetailModal = ({ description }) => {
     // Attachment Select Code
     const fileInputRef = useRef(null);
@@ -43,6 +45,9 @@ const CardDetailModal = ({ description }) => {
         setTempComment('');
         setIsCommentEditing(false);
     };
+
+    const [showEmojiPicker, setShowEmojiPicker] = useState(null); // To show/hide picker for a specific comment
+    const [reactions, setReactions] = useState({}); // { index: emoji }
 
     return (
         <>
@@ -115,9 +120,9 @@ const CardDetailModal = ({ description }) => {
                                                   onClick={() => setIsEditing(true)}>Edit</span>
                                         )}
                                     </div>
-                                    <div className="view_desc mt-3">
+                                    <div className="view_desc">
                                         {isEditing ? (
-                                            <div>
+                                            <div className="">
                                                 <div className="custom-editor">
                                                     <CKEditor
                                                         editor={ClassicEditor}
@@ -129,16 +134,21 @@ const CardDetailModal = ({ description }) => {
                                                     />
                                                 </div>
                                                 <div className="desc_ck_btn mt-2">
-                                                    <button className="btn btn-success me-2" onClick={handleSave}>Save
+                                                    <button className="sav_btn me-2" onClick={handleSave}>Save
                                                     </button>
-                                                    <button className="btn btn-secondary" onClick={handleCancel}>Cancel
+                                                    <button className="cancel_btn" onClick={handleCancel}>Cancel
                                                     </button>
                                                 </div>
+
                                             </div>
                                         ) : (
-                                            <div dangerouslySetInnerHTML={{__html: desc}}/>
+                                            <div
+                                                className="comment_box"
+                                                dangerouslySetInnerHTML={{__html: desc}}
+                                            />
                                         )}
                                     </div>
+
                                     {/*<div className="view_desc">*/}
                                     {/*    <p>It is a long established fact that a reader will be distracted by the readable*/}
                                     {/*        content of a page when looking at its layout. The point of using.</p>*/}
@@ -214,8 +224,8 @@ const CardDetailModal = ({ description }) => {
                                                             />
                                                         </div>
                                                         <div className="desc_ck_btn mt-2">
-                                                            <button className="btn btn-success me-2" onClick={handleCommentSave}>Save</button>
-                                                            <button className="btn btn-secondary" onClick={handleCommentCancel}>Cancel</button>
+                                                            <button className="sav_btn me-2" onClick={handleCommentSave}>Save</button>
+                                                            <button className="cancel_btn" onClick={handleCommentCancel}>Cancel</button>
                                                         </div>
                                                     </div>
                                                 ) : (
@@ -226,34 +236,102 @@ const CardDetailModal = ({ description }) => {
                                             </div>
                                         </div>
 
-                                        {/* Printed Comments Below */}
+                                         {/*Printed Comments Below*/}
+                                        {/*{comments.length > 0 && (*/}
+                                        {/*    <div className="printed_comments">*/}
+                                        {/*        {comments.map((cmt, index) => (*/}
+                                        {/*            <div key={index}*/}
+                                        {/*                 className="single_comment d-flex align-items-center">*/}
+                                        {/*                <div className="comment_avatar">*/}
+                                        {/*                    <span>H</span>*/}
+                                        {/*                </div>*/}
+                                        {/*                <div className="comment_wrapper">*/}
+                                        {/*                    <div*/}
+                                        {/*                        className="comment_box"*/}
+                                        {/*                        dangerouslySetInnerHTML={{__html: cmt}}*/}
+                                        {/*                    />*/}
+                                        {/*                    <div className="comment_actions d-flex gap-1">*/}
+                                        {/*                        <button className="edit_btn">Edit*/}
+                                        {/*                        </button>*/}
+                                        {/*                        <button*/}
+                                        {/*                            className="delete_btn">Delete*/}
+                                        {/*                        </button>*/}
+                                        {/*                        <button*/}
+                                        {/*                            className="reaction_btn"*/}
+                                        {/*                            onClick={() => setShowEmojiPicker(showEmojiPicker === index ? null : index)}*/}
+                                        {/*                        >*/}
+                                        {/*                            <i className="fa-regular fa-face-smile"></i>*/}
+                                        {/*                        </button>*/}
+                                        {/*                    </div>*/}
+                                        {/*                </div>*/}
+                                        {/*            </div>*/}
+                                        {/*        ))}*/}
+                                        {/*    </div>*/}
+                                        {/*)}*/}
                                         {comments.length > 0 && (
                                             <div className="printed_comments">
                                                 {comments.map((cmt, index) => (
                                                     <div key={index}
-                                                         className="single_comment d-flex align-items-center">
-                                                        <div className="comment_avatar">
+                                                         className="single_comment align-items-center">
+
+                                                        <div className="comment_avatar d-flex">
                                                             <span>H</span>
+                                                            <div className="usr_name_sec ">
+                                                                <h6>hussain.khan</h6> <p>Jul 18,2025, 7:57PM </p>
+                                                            </div>
                                                         </div>
+
                                                         <div className="comment_wrapper">
+                                                            <div className="comment_box"
+                                                                 dangerouslySetInnerHTML={{__html: cmt}}/>
                                                             <div
-                                                                className="comment_box"
-                                                                dangerouslySetInnerHTML={{__html: cmt}}
-                                                            />
-                                                            <div className="comment_actions d-flex gap-1">
-                                                                <button className="edit_btn">Edit
-                                                                </button>
+                                                                className="comment_actions d-flex gap-1 align-items-center position-relative">
+                                                                <button className="edit_btn">Edit</button>
+                                                                <button className="delete_btn"> Delete</button>
+
+                                                                {/* Emoji shown (if any) */}
+                                                                {reactions[index] && (
+                                                                    <span>{reactions[index]}</span>
+                                                                )}
+
+                                                                {/* Emoji picker icon */}
                                                                 <button
-                                                                    className="delete_btn">Delete
+                                                                    className="reaction_btn"
+                                                                    onClick={() =>
+                                                                        setShowEmojiPicker(showEmojiPicker === index ? null : index)
+                                                                    }
+                                                                >
+                                                                    <i className="fa-regular fa-face-smile"></i>
                                                                 </button>
-                                                                <button className="reaction_btn">😊
-                                                                </button>
+
+                                                                {/* Picker shown only for selected comment */}
+                                                                {showEmojiPicker === index && (
+                                                                    <div
+                                                                        style={{
+                                                                            position: "absolute",
+                                                                            top: "100%",
+                                                                            right: 50,
+                                                                            left: 100,
+                                                                            zIndex: 1000,
+                                                                        }}
+                                                                    >
+                                                                        <EmojiPicker
+                                                                            onEmojiClick={(emojiData) => {
+                                                                                const selectedEmoji = emojiData.emoji;
+                                                                                setReactions((prev) => ({
+                                                                                    ...prev,
+                                                                                    [index]: selectedEmoji,
+                                                                                }));
+                                                                                setShowEmojiPicker(null);
+                                                                            }}
+                                                                        />
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 ))}
                                             </div>
-
                                         )}
 
                                     </div>
@@ -276,12 +354,7 @@ const CardDetailModal = ({ description }) => {
 
                                         <li className="detail_btn_sec"><i className="fa-solid fa-paperclip"></i>
                                             <span>Attachments</span></li>
-
-                                        <li className="detail_btn_sec"><i className="fa-solid fa-user-plus"></i>
-                                            <span>Join</span></li>
-
                                     </ul>
-
                                 </div>
                             </div>
                         </div>
