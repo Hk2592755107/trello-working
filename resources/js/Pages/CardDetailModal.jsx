@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState,useRef } from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
+import {useState, useRef} from 'react';
+import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import EmojiPicker from 'emoji-picker-react';
 
-const CardDetailModal = ({ description }) => {
+const CardDetailModal = ({description}) => {
     // Attachment Select Code
     const fileInputRef = useRef(null);
     const handleFileClick = () => {
@@ -49,6 +49,21 @@ const CardDetailModal = ({ description }) => {
     const [showEmojiPicker, setShowEmojiPicker] = useState(null); // To show/hide picker for a specific comment
     const [reactions, setReactions] = useState({}); // { index: emoji }
 
+
+    // members dropdown
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const toggleDropdown = () => {
+        setShowDropdown(prev => !prev);
+    };
+
+    // labels dropdown
+    const [showLabelDropdown, setShowLabelDropdown] = useState(false);
+
+    const toggleLabelDropdown = () => {
+        setShowLabelDropdown(prev => !prev);
+    };
+
     return (
         <>
             <div className="modal fade" id="cardDetailModal" tabIndex="-1" aria-hidden="true">
@@ -57,7 +72,8 @@ const CardDetailModal = ({ description }) => {
 
                         <div className="row card-cover">
                             <div className="col-md-4">
-                                <span className="badge bg-secondary board_badge">Done <i className="fa-solid fa-angle-down"></i>
+                                <span className="badge bg-secondary board_badge">Done <i
+                                    className="fa-solid fa-angle-down"></i>
                                     </span>
                             </div>
                             <div className="col-md-4">
@@ -91,15 +107,81 @@ const CardDetailModal = ({ description }) => {
                                                 <span className="member-badge">A</span>
                                                 <span className="member-badge">B</span>
                                                 <span className="member-badge">C</span>
-                                                <span className="add_member"><i className="fa-solid fa-plus"></i></span>
+                                                <span className="add_member" onClick={toggleDropdown}>
+                                                    <i className="fa-solid fa-plus"></i>
+                                                </span>
                                             </div>
+
+                                            {/* Member Dropdown menu */}
+                                            {showDropdown && (
+                                                <div className="member-dropdown-custom">
+                                                    <div className="member-dropdown-header">
+                                                        <span className="">Members</span>
+                                                        <span className="close-icon" onClick={toggleDropdown}><i className="fa-solid fa-xmark"></i></span>
+                                                    </div>
+
+                                                    <input
+                                                        type="text"
+                                                        className="member-search-input"
+                                                        placeholder="Search members"
+                                                    />
+
+                                                    <div className="member-list-title">Card members</div>
+                                                        <div className="member-list">
+                                                            <div className="member-list-item">
+                                                                <div className="member-avatar">H</div>
+                                                                <div className="member-name">hussain.khan</div>
+                                                                <div className="remove-icon"><i
+                                                                    className="fa-solid fa-xmark"></i></div>
+                                                            </div>
+                                                            <div className="member-list-item">
+                                                                <div className="member-avatar">A</div>
+                                                                <div className="member-name">Ashter Aoun</div>
+                                                                <div className="remove-icon"><i
+                                                                    className="fa-solid fa-xmark"></i></div>
+                                                            </div>
+                                                            <div className="member-list-item">
+                                                                <div className="member-avatar">M</div>
+                                                                <div className="member-name">Moiz</div>
+                                                                <div className="remove-icon"><i
+                                                                    className="fa-solid fa-xmark"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                            )}
                                         </div>
+
                                         <div className="label_sec">
                                             <h5 className="">Labels</h5>
                                             <div className="d-flex">
                                                 <span className="label_btn">High</span>
-                                                <span className="add_label"><i className="fa-solid fa-plus"></i></span>
+                                                <span className="add_label" onClick={toggleLabelDropdown}><i className="fa-solid fa-plus"></i></span>
                                             </div>
+
+                                            {/* Label Dropdown menu */}
+                                            {showLabelDropdown && (
+                                                <div className="label-dropdown-custom">
+                                                    <div className="label-dropdown-header">
+                                                        <span className="">Labels</span>
+                                                        <span className="close-icon" onClick={toggleLabelDropdown}><i className="fa-solid fa-xmark"></i></span>
+                                                    </div>
+
+                                                    <input
+                                                        type="text"
+                                                        className="label-search-input"
+                                                        placeholder="Search Label"
+                                                    />
+
+                                                    <div className="label-list-title">Labels</div>
+                                                    <div className="label-list">
+                                                        <div className="label-list-item">
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            )}
                                         </div>
                                         <div className="date_sec">
                                             <h5 className="">Due date</h5>
@@ -200,7 +282,7 @@ const CardDetailModal = ({ description }) => {
 
 
                                         <span
-                                            className="all_attach_btn mt-4 d-block">View all attachments 7 (hidden)</span>
+                                            className="all_attach_btn  d-block">View all attachments 7 (hidden)</span>
                                     </div>
 
                                     <div className="comment_sec">
@@ -224,19 +306,24 @@ const CardDetailModal = ({ description }) => {
                                                             />
                                                         </div>
                                                         <div className="desc_ck_btn mt-2">
-                                                            <button className="sav_btn me-2" onClick={handleCommentSave}>Save</button>
-                                                            <button className="cancel_btn" onClick={handleCommentCancel}>Cancel</button>
+                                                            <button className="sav_btn me-2"
+                                                                    onClick={handleCommentSave}>Save
+                                                            </button>
+                                                            <button className="cancel_btn"
+                                                                    onClick={handleCommentCancel}>Cancel
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 ) : (
                                                     <div onClick={() => setIsCommentEditing(true)}>
-                                                        <input className="comment_click" type="text" placeholder="write a comment..." />
+                                                        <input className="comment_click" type="text"
+                                                               placeholder="write a comment..."/>
                                                     </div>
                                                 )}
                                             </div>
                                         </div>
 
-                                         {/*Printed Comments Below*/}
+                                        {/*Printed Comments Below*/}
                                         {/*{comments.length > 0 && (*/}
                                         {/*    <div className="printed_comments">*/}
                                         {/*        {comments.map((cmt, index) => (*/}
@@ -285,7 +372,7 @@ const CardDetailModal = ({ description }) => {
                                                             <div className="comment_box"
                                                                  dangerouslySetInnerHTML={{__html: cmt}}/>
                                                             <div
-                                                                className="comment_actions d-flex gap-1 align-items-center position-relative">
+                                                                className="comment_actions d-flex gap-1">
                                                                 <button className="edit_btn">Edit</button>
                                                                 <button className="delete_btn"> Delete</button>
 
@@ -306,26 +393,33 @@ const CardDetailModal = ({ description }) => {
 
                                                                 {/* Picker shown only for selected comment */}
                                                                 {showEmojiPicker === index && (
-                                                                    <div
-                                                                        style={{
-                                                                            position: "absolute",
-                                                                            top: "100%",
-                                                                            right: 50,
-                                                                            left: 100,
-                                                                            zIndex: 1000,
-                                                                        }}
-                                                                    >
-                                                                        <EmojiPicker
-                                                                            onEmojiClick={(emojiData) => {
-                                                                                const selectedEmoji = emojiData.emoji;
-                                                                                setReactions((prev) => ({
-                                                                                    ...prev,
-                                                                                    [index]: selectedEmoji,
-                                                                                }));
-                                                                                setShowEmojiPicker(null);
-                                                                            }}
-                                                                        />
+                                                                    <div className="emoji_container">
+                                                                        <button
+                                                                            onClick={() => setShowEmojiPicker(index)}>😊
+                                                                        </button>
+
+                                                                        {showEmojiPicker === index && (
+                                                                            <div className="emoji_show">
+                                                                                <EmojiPicker
+                                                                                    theme="dark"
+                                                                                    width={300}
+                                                                                    height={300}
+                                                                                    emojiSize={10}
+                                                                                    emojiPadding={4}
+                                                                                    autoFocusSearch={false}
+                                                                                    onEmojiClick={(emojiData) => {
+                                                                                        const selectedEmoji = emojiData.emoji;
+                                                                                        setReactions((prev) => ({
+                                                                                            ...prev,
+                                                                                            [index]: selectedEmoji,
+                                                                                        }));
+                                                                                        setShowEmojiPicker(null);
+                                                                                    }}
+                                                                                />
+                                                                            </div>
+                                                                        )}
                                                                     </div>
+
                                                                 )}
                                                             </div>
                                                         </div>
