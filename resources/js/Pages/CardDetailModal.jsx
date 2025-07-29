@@ -3,6 +3,8 @@ import {useState, useRef} from 'react';
 import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import EmojiPicker from 'emoji-picker-react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CardDetailModal = ({description}) => {
     // Attachment Select Code
@@ -29,12 +31,12 @@ const CardDetailModal = ({description}) => {
     //Comment js
     const [isCommentEditing, setIsCommentEditing] = useState(false);
     const [tempComment, setTempComment] = useState('');
-    const [comments, setComments] = useState([]); // 👈 Array to hold all comments
+    const [comments, setComments] = useState([]);
 
 
     const handleCommentSave = () => {
         if (tempComment.trim() !== '') {
-            setComments(prev => [...prev, tempComment]); // add new comment to list
+            setComments(prev => [...prev, tempComment]);
             setTempComment('');
             setIsCommentEditing(false);
         }
@@ -63,6 +65,20 @@ const CardDetailModal = ({description}) => {
     const toggleLabelDropdown = () => {
         setShowLabelDropdown(prev => !prev);
     };
+
+    // Date dropdown
+    const [showDateDropdown, setShowDateDropdown] = useState(false);
+    const [startDateEnabled, setStartDateEnabled] = useState(true);
+    const [dueDateEnabled, setDueDateEnabled] = useState(true);
+    const [startDate, setStartDate] = useState(null);
+    const [dueDate, setDueDate] = useState(new Date());
+    const [startTime, setStartTime] = useState("12:00");
+    const [dueTime, setDueTime] = useState("12:00");
+
+    const toggleDateDropdown = () => {
+        setShowDateDropdown(!showDateDropdown);
+    };
+
 
     return (
         <>
@@ -117,7 +133,8 @@ const CardDetailModal = ({description}) => {
                                                 <div className="member-dropdown-custom">
                                                     <div className="member-dropdown-header">
                                                         <span className="">Members</span>
-                                                        <span className="close-icon" onClick={toggleDropdown}><i className="fa-solid fa-xmark"></i></span>
+                                                        <span className="close-icon" onClick={toggleDropdown}><i
+                                                            className="fa-solid fa-xmark"></i></span>
                                                     </div>
 
                                                     <input
@@ -127,27 +144,27 @@ const CardDetailModal = ({description}) => {
                                                     />
 
                                                     <div className="member-list-title">Card members</div>
-                                                        <div className="member-list">
-                                                            <div className="member-list-item">
-                                                                <div className="member-avatar">H</div>
-                                                                <div className="member-name">hussain.khan</div>
-                                                                <div className="remove-icon"><i
-                                                                    className="fa-solid fa-xmark"></i></div>
-                                                            </div>
-                                                            <div className="member-list-item">
-                                                                <div className="member-avatar">A</div>
-                                                                <div className="member-name">Ashter Aoun</div>
-                                                                <div className="remove-icon"><i
-                                                                    className="fa-solid fa-xmark"></i></div>
-                                                            </div>
-                                                            <div className="member-list-item">
-                                                                <div className="member-avatar">M</div>
-                                                                <div className="member-name">Moiz</div>
-                                                                <div className="remove-icon"><i
-                                                                    className="fa-solid fa-xmark"></i></div>
-                                                            </div>
+                                                    <div className="member-list">
+                                                        <div className="member-list-item">
+                                                            <div className="member-avatar">H</div>
+                                                            <div className="member-name">hussain.khan</div>
+                                                            <div className="remove-icon"><i
+                                                                className="fa-solid fa-xmark"></i></div>
+                                                        </div>
+                                                        <div className="member-list-item">
+                                                            <div className="member-avatar">A</div>
+                                                            <div className="member-name">Ashter Aoun</div>
+                                                            <div className="remove-icon"><i
+                                                                className="fa-solid fa-xmark"></i></div>
+                                                        </div>
+                                                        <div className="member-list-item">
+                                                            <div className="member-avatar">M</div>
+                                                            <div className="member-name">Moiz</div>
+                                                            <div className="remove-icon"><i
+                                                                className="fa-solid fa-xmark"></i></div>
                                                         </div>
                                                     </div>
+                                                </div>
 
                                             )}
                                         </div>
@@ -156,7 +173,8 @@ const CardDetailModal = ({description}) => {
                                             <h5 className="">Labels</h5>
                                             <div className="d-flex">
                                                 <span className="label_btn">High</span>
-                                                <span className="add_label" onClick={toggleLabelDropdown}><i className="fa-solid fa-plus"></i></span>
+                                                <span className="add_label" onClick={toggleLabelDropdown}><i
+                                                    className="fa-solid fa-plus"></i></span>
                                             </div>
 
                                             {/* Label Dropdown menu */}
@@ -164,7 +182,8 @@ const CardDetailModal = ({description}) => {
                                                 <div className="label-dropdown-custom">
                                                     <div className="label-dropdown-header">
                                                         <span className="">Labels</span>
-                                                        <span className="close-icon" onClick={toggleLabelDropdown}><i className="fa-solid fa-xmark"></i></span>
+                                                        <span className="close-icon" onClick={toggleLabelDropdown}><i
+                                                            className="fa-solid fa-xmark"></i></span>
                                                     </div>
 
                                                     <input
@@ -176,20 +195,95 @@ const CardDetailModal = ({description}) => {
                                                     <div className="label-list-title">Labels</div>
                                                     <div className="label-list">
                                                         <div className="label-list-item">
-                                                            
+                                                            <input type="checkbox" className="label-checkbox"/>
+                                                            <span className="label-color-box"
+                                                                  style={{backgroundColor: '#ae2e24'}}>High</span>
+                                                        </div>
+                                                        <div className="label-list-item">
+                                                            <input type="checkbox" className="label-checkbox"/>
+                                                            <span className="label-color-box"
+                                                                  style={{backgroundColor: '#216e4e'}}>Normal</span>
+                                                        </div>
+                                                        <div className="label-list-item">
+                                                            <input type="checkbox" className="label-checkbox"/>
+                                                            <span className="label-color-box"
+                                                                  style={{backgroundColor: '#e2b203'}}>Medium</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                             )}
                                         </div>
-                                        <div className="date_sec">
+                                        <div className="date_sec position-relative">
                                             <h5 className="">Due date</h5>
                                             <div className="d-flex">
-                                            <span className="">
-                                                <i className="fa-solid fa-clock me-1"></i> Jul 4, 12:21 PM
-                                            </span>
+                                                <span className="due_sec" onClick={toggleDateDropdown}>
+                                                    <i className="fa-solid fa-clock me-1"></i> Jul 4, 12:21 PM <i
+                                                    className="fa-solid fa-chevron-down"></i>
+                                                </span>
                                             </div>
+
+                                            {showDateDropdown && (
+                                                <div className="calendar-dropdown-custom position-absolute">
+                                                    <div className="calendar-dropdown-header">
+                                                        <span className="">Dates</span>
+                                                        <span className="close-icon" onClick={toggleDateDropdown}><i className="fa-solid fa-xmark"></i></span>
+                                                    </div>
+                                                    <div className="">
+                                                        <DatePicker
+                                                            selected={dueDate}
+                                                            onChange={(date) => setDueDate(date)}
+                                                            inline
+                                                        />
+                                                    </div>
+                                                    <label className="date-label">Start
+                                                        date</label>
+                                                    <div className="start_date_sec d-flex gap-2">
+                                                        <input className="form-check-input" type="checkbox"
+                                                               checked={startDateEnabled}
+                                                               onChange={() => setStartDateEnabled(!startDateEnabled)}
+                                                               id="startDateCheck"/>
+
+                                                        {startDateEnabled && (
+                                                            <div className=" mt-1">
+                                                                <input
+                                                                    type="text"
+                                                                    placeholder="DD/MM/YY"
+                                                                    className="start_date_input"
+                                                                    value={startDate ? startDate.toLocaleDateString("en-GB") : ""}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                    <label className="date-label">Due date</label>
+                                                    <div className="start_due_sec d-flex gap-2">
+                                                        <input className="form-check-input" type="checkbox"
+                                                               checked={dueDateEnabled}
+                                                               onChange={() => setDueDateEnabled(!dueDateEnabled)}
+                                                               id="dueDateCheck"/>
+
+                                                        {dueDateEnabled && (
+                                                            <div className="mt-1">
+                                                                <input
+                                                                    type="text"
+                                                                    className="due_date_input"
+                                                                    value={dueDate ? dueDate.toLocaleDateString("en-GB") : ""}
+                                                                    readOnly
+                                                                />
+                                                                <input type="text"
+                                                                className="due_time_sec"
+                                                                />
+
+                                                            </div>
+                                                        )}
+                                                    </div>
+
+                                                    <div className="date_sec_btn gap-2">
+                                                        <button className="save_btn">Save</button>
+                                                        <button className="remove_btn">Remove</button>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
 

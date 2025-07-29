@@ -652,7 +652,7 @@ background-color: #d10101;
     font-weight: 400;
 }
 
-.card_left_box .date_sec span {
+.card_left_box .date_sec .due_sec {
     padding: 6px 10px;
     margin: 0px 5px;
     border-radius: 3px;
@@ -1134,3 +1134,130 @@ background-color: #d10101;
     margin-bottom: 6px;
     color: #bfcbd9;
 }
+
+.label-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 0px;
+    margin-bottom: 6px;
+}
+
+
+.label-checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.label-color-box {
+    width: 100%;
+    height: 30px;
+    padding: 5px 5px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.calendar-dropdown-custom {
+    top: 100%;
+    right: 0px;
+    left: -80px;
+    width: 280px;
+    padding: 10px 20px;
+    background-color: #282e33;
+    border: 1px solid #282e33;
+    border-radius: 8px;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.react-datepicker {
+    border: none;
+}
+
+.calendar-dropdown-header {
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.react-datepicker {
+    background-color: #282e33 !important;
+    border: none !important;
+    color: #fff !important;
+}
+.react-datepicker__navigation-icon::before {
+    border-color: #fff !important;
+}
+
+.react-datepicker__header {
+    background-color: #282e33 !important;
+    color: #fff !important;
+}
+
+.react-datepicker__current-month {
+    color: #fff !important;
+}
+.react-datepicker__day-name {
+    color: #fff !important;
+}
+.react-datepicker__day{
+    color: #fff !important;
+}
+.react-datepicker__day:hover {
+    background-color: #172b4d !important;
+}
+.react-datepicker__day--selected {
+    background-color: #172b4d !important;
+}
+
+.date-label {
+    margin: 15px 0px 0px 0px;
+    font-size: 14px;
+}
+
+.start_date_sec .form-check-input {
+    margin: auto 0px;
+}
+.start_due_sec {
+    margin: 0px 0px 10px 0px;
+}
+.start_due_sec .form-check-input {
+    margin: auto 0px;
+}
+.start_date_input {
+    background-color: #3c3e42;
+    border-radius: 3px;
+}
+.due_date_input {
+    background-color: #3c3e42;
+    border-radius: 3px;
+    margin: 0px 0px;
+    width: 100px;
+    font-size: 13px;
+}
+.due_time_sec {
+    background-color: #3c3e42;
+    border-radius: 3px;
+    margin: 0px 20px;
+    width: 100px;
+    font-size: 13px;
+}
+.date_sec_btn {
+    display: grid;
+    margin: 20px 0px;
+}
+.date_sec_btn .save_btn {
+    background-color: #579dff;
+    padding: 8px 5px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.date_sec_btn .remove_btn {
+    background-color: #3c3e42;
+    padding: 8px 5px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
