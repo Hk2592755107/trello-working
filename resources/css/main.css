@@ -236,8 +236,8 @@ body {
     position: absolute;
     /*left: 0;*/
     /*right: 0;*/
-    bottom: 0;
-    /*top: 0;*/
+    /*bottom: 0;*/
+    top: 0;
     /*padding-top: 130px;*/
 }
 
@@ -325,6 +325,9 @@ body {
     max-height: 300px; /* adjust as needed */
     padding-right: 4px;
     margin-bottom: 10px; /* space for the add button */
+}
+.board-position{
+    position: relative;
 }
 .board-card {
     background: transparent;
